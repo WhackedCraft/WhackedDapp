@@ -1,4 +1,4 @@
-import web3 from 'web3';
+import Web3 from 'web3';
 
 export const web3 = (() => {
     if(window.web3)
