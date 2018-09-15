@@ -8,6 +8,7 @@ export const web3 = (() => {
 })();
 
 export const web3ProviderName = (() => {
+    if(!window.web3) return "none";
     if(window.web3.currentProvider.isMetaMask) return "MetaMask";
     if(window.mist) return "Mist";
     if(window.web3) return "web3";
