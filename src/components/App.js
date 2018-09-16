@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { web3, web3ProviderName, contract } from '../utils/web3';
 import ItemView from './ItemView';
+import OfferView from './OfferView';
 import './App.css';
 
 import Navbar from './Navbar.js';
@@ -11,21 +12,25 @@ class App extends Component {
     this.state = {
         accounts: [],
         selectedWallet: null,
-        items: []
+        items: [],
+        tab: 0
     };
     web3.eth.getAccounts().then((accounts) => this.setState({ accounts }));
   }
   render() {
     return (
       <div>
-      <Navbar accounts={this.state.accounts} selectedWallet={this.state.selectedWallet} selectWallet={(address) => this.selectWallet(address)} />
-      <ItemView selectedWallet={this.state.selectedWallet} items={this.state.items} />
+      <Navbar tab={this.state.tab} setTab={(tab) => this.setState({ tab })} accounts={this.state.accounts} selectedWallet={this.state.selectedWallet} selectWallet={(address) => this.selectWallet(address)} />
+      
+      {this.state.tab == 0 && <ItemView selectedWallet={this.state.selectedWallet} items={this.state.items} />}
+      {this.state.tab == 1 && <OfferView selectedWallet={this.state.selectedWallet} items={this.state.items} />}
       </div>
     );
   }
   selectWallet(account) {
       this.setState({ selectedWallet: account, items: null });
       this.getItems(account);
+      this.getOffers(account);
   }
   async getItems(account) {
     contract.methods.getUserInventory(account).call().then(async (items) => {
@@ -38,6 +43,8 @@ class App extends Component {
       }
       this.setState({ items: itemsdata });
     });
+  }
+  async getOffers(account) {
   }
 }
 

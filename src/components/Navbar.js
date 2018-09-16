@@ -12,11 +12,11 @@ class Navbar extends Component {
   </button>
   <div className="collapse navbar-collapse" id="navbarNav">
     <ul className="navbar-nav">
-      <li className="nav-item active">
-        <a className="nav-link" href="#">Przedmioty</a>
+      <li className={"nav-item" + (this.props.tab === 0 ? " active" : "")}>
+        <a className="nav-link" onClick={() => this.props.setTab(0)}>Przedmioty</a>
       </li>
-      <li className="nav-item">
-        <a className="nav-link" href="#">Oferty</a>
+      <li className={"nav-item" + (this.props.tab === 1 ? " active" : "")}>
+        <a className="nav-link" onClick={() => this.props.setTab(1)}>Oferty</a>
       </li>
       <WalletSelector accounts={this.props.accounts} selectedWallet={this.props.selectedWallet} selectWallet={(address) => this.props.selectWallet(address)}  />
     </ul>
