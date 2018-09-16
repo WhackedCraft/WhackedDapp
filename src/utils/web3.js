@@ -17,7 +17,7 @@ export const web3ProviderName = (() => {
 
 export const contract = (() => {
     if(web3) {
-        return new web3.eth.Contract(abi, "0x2F1624e6DCe8ad4c31Ac527Bac7c8Ff8E4fF4b8b");
+        return new web3.eth.Contract(abi, "0x7ca65a364874a6e092eeabaf59d23c0f62dc3791");
     }
     return null;
 })();

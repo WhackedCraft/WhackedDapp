@@ -36,7 +36,7 @@ class App extends Component {
     contract.methods.getUserInventory(account).call().then(async (items) => {
       let itemsdata = [];
       for(let i in items) {
-        let emitter = await contract.methods.getAssetEmmiter(items[i]).call();
+        let emitter = await contract.methods.getAssetEmitter(items[i]).call();
         let data = await contract.methods.getAssetData(items[i]).call();
         let claim_string = await contract.methods.getAssetClaimString(items[i]).call();
         itemsdata.push({ id: items[i], emitter, data, claim_string });
