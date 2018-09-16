@@ -18,7 +18,7 @@ class Navbar extends Component {
       <li className="nav-item">
         <a className="nav-link" href="#">Oferty</a>
       </li>
-      <WalletSelector />
+      <WalletSelector accounts={this.props.accounts} selectedWallet={this.props.selectedWallet} selectWallet={(address) => this.props.selectWallet(address)}  />
     </ul>
   </div>
 </nav>
